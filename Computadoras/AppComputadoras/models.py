@@ -13,7 +13,7 @@ class Computadora(models.Model):
 #--------------Modelo Procesador------------#######
 class Procesador(models.Model):
     nombre = models.CharField(max_length=50)
-    numeroModelo = models.IntegerField()
+    numeroModelo = models.CharField(max_length=50)
 
     def __str__(self):
         return self.nombre + " " + str(self.numeroModelo)

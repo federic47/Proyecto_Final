@@ -13,3 +13,29 @@
 <h2>Estas en la pagina de procesador</h2>
 
 {% endblock%}
+
+{% block formulario%}
+
+{% if formulario.error %}
+
+<p style="color:red">ERROR VERIFIQUE LOS DATOS</p>
+
+{% endif %}
+
+<form action="{% url 'procesador' %}" method="post">{% csrf_token %}
+    <h3>Ingrese Procesador</h3>
+    <h6>-------------------------------------------------</h6>
+    <table>
+        <br>
+        {{ formulario.as_table }}
+    </table>
+    <br>
+    <h6>-------------------------------------------------</h6>
+    <br>
+    <input type="submit" value="Enviar Formulario procesador">
+    
+
+
+</form>
+<br>
+{% endblock%}

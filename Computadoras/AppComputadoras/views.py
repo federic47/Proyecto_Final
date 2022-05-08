@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
-from AppComputadoras.forms import CompuFormularios
+from AppComputadoras.forms import CompuFormularios,ProcesadorFormularios,MotherboardFormularios
 
 #---------------------------------------------------------------------------------------
 def computadora(request):
@@ -44,10 +44,41 @@ def buscar(request):
 def inicio(request):
     return render(request,'AppComputadoras/inicio.html')
 
+
 #-----------Definimos la views de Procesador------#
 def procesador(request):
-     return render(request,'AppComputadoras/procesador.html')
+      #-------SI entra por Post cuando viene un formulario cargado--------
+    if request.method =='POST':
+         #Crea una variable  donde llama a la clase forms de Forumulario 
+         miProcesador= ProcesadorFormularios(request.POST)
+
+         #Pregunta si el formulario que este todo  ok  es decir datos validos
+         if miProcesador.is_valid():
+              #crea variable informacion y limpia con metodo
+              informacion = miProcesador.cleaned_data
+              #Asigna esos datos limpiados a la creacion de las compus con esos parametros
+              procesador = Procesador(nombre=informacion['fabricante'], numeroModelo=informacion['marca'])
+              procesador.save()
+              return render(request, 'AppComputadoras/inicio.html')
+    else:
+         miProcesador = ProcesadorFormularios()
+    return render(request, 'AppComputadoras/procesador.html' , {'formulario': miProcesador})
 
 #-----------Definimos la views de Procesador------#
 def motherboard(request):
-     return render(request,'AppComputadoras/motherboard.html')
+       #-------SI entra por Post cuando viene un formulario cargado--------
+    if request.method =='POST':
+         #Crea una variable  donde llama a la clase forms de Forumulario 
+         miMotherboard= MotherboardFormularios(request.POST)
+
+         #Pregunta si el formulario que este todo  ok  es decir datos validos
+         if miMotherboard.is_valid():
+              #crea variable informacion y limpia con metodo
+              informacion = miMotherboard.cleaned_data
+              #Asigna esos datos limpiados a la creacion de las compus con esos parametros
+              motherboard = Motherboard(marca=informacion['fabricante'], modelo=informacion['marca'])
+              motherboard.save()
+              return render(request, 'AppComputadoras/inicio.html')
+    else:
+         miMotherboard = MotherboardFormularios()
+    return render(request, 'AppComputadoras/motherboard.html' , {'formulario': miMotherboard})

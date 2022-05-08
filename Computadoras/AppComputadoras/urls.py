@@ -10,4 +10,6 @@ urlpatterns = [
     path('busquedaMarca/',  busquedaMarca, name='busquedaMarca'),
     path('buscar/',  buscar, name='buscar'),
     
+    
+    
 ]
