@@ -1,0 +1,26 @@
+{% extends "AppComputadoras/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h1>Buscar Computadoras</h1>
+
+{% endblock%}
+
+{% block parrafo %}
+
+<h2>Estas en la pagina Buscando Computadoras</h2>
+
+{% endblock%}
+
+{% block formulario%}
+<br>
+<form action="{% url 'buscar' %}" method="GET">
+    <input type="text" placeholder="Ingrese la Marca " name="marca" id="marca">
+    <input type="submit" value="Buscar Marca ">
+
+
+</form>
+<br>
+{% endblock%}

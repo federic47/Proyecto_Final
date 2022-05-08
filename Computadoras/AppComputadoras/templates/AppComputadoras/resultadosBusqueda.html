@@ -1,0 +1,45 @@
+{% extends "AppComputadoras/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h1>Busqueda computadoras</h1>
+
+{% endblock%}
+
+{% block parrafo %}
+
+<h2>Estas en la pagina donde muestra los resultaddos</h2>
+
+{% endblock%}
+
+{% block formulario%}
+
+{% if not repuesta%}
+
+<h1>Estamos buscando las computadoras de la marca {{marca}}</h1>
+
+{% if computadoras %}
+
+<ul>
+    {% for computadora in computadoras %}
+        <li>{{computadora.fabricante}}</li>
+        <li>{{computadora.marca}}</li>
+        <br>
+{% endfor %}
+</ul>
+{% else %}
+<h6 style="color:red">NO SE ENCONTRARON DATOS ESA MARCA</h6>
+{% endif%}
+
+
+
+{% else %}
+
+<h1 style="color:blue">{{repuesta}}</h1>
+
+{% endif %}
+
+{% endblock %}
+
